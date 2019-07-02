@@ -47,7 +47,7 @@ class DashboardPage(
             return input.executeScript(
                 """
                 iframes = $('#dashboard').find('iframe');
-                return iframes.length === 1 && iframes.contents().find('body').children().length > 0
+                return iframes[0].length === 1 && iframes[0].contents().find('body').children().length > 0
                 """
             ) as Boolean
         }
