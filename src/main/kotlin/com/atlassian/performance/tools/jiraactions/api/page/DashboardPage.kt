@@ -43,10 +43,11 @@ class DashboardPage(
     private class CheckIFrame : ExpectedCondition<Boolean> {
         override fun apply(input: WebDriver?): Boolean? {
             input as JavascriptExecutor
+            // at least one iframe is required on a dashboard
             return input.executeScript(
                 """
                 iframes = $('#dashboard').find('iframe');
-                return iframes.length >= 1 && iframes.contents().find('body').children().length > 0
+                return iframes.length >= 1 && iframes.last().contents().find('body').children().length > 0
                 """
             ) as Boolean
         }
